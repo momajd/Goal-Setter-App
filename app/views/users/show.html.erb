@@ -1,0 +1,15 @@
+<h1> <%= @user.username %>'s Page </h1>
+
+<section>
+  <h2>Public Goals</h2>
+  <%= render @user.public_goals %>
+</section>
+
+<% if @user == current_user %>
+  <section>
+    <h2>Private Goals</h2>
+    <%= render @user.private_goals %>
+  </section>
+<% end %>
+
+<%= render "goals/form" %>

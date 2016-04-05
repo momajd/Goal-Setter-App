@@ -1,0 +1,24 @@
+<% action = @goal.persisted? ? edit_user_goal_url(current_user, @goal) : user_goals_url(current_user) %>
+<% method = @goal.persisted? ? "PATCH" : "POST" %>
+
+<form action="<%= action %>" method="POST">
+  <input type="hidden" name="_method" value="<%= method %>">
+  <%= auth_token %>
+
+  <label>New Goal
+    <input type="text" name="goal[title]" value="<%= @goal.title %>">
+  </label> <br />
+
+  <label>Privacy <br />
+    <input type="radio"
+           name="goal[privacy]"
+           value="Private"
+           <%= privacy_checked(@goal, "Private") %>>Private<br />
+    <input type="radio"
+           name="goal[privacy]"
+           value="Public"
+           <%= privacy_checked(@goal, "Public") %>>Public<br />
+  </label>
+
+  <input type="submit" value="Submit" />
+</form>
